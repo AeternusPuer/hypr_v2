@@ -168,8 +168,6 @@ install_base_packages(){
   #run_loading "$add onlyoffice"                       # Замена Microsoft Office
   # Оформление
   run_loading "$install breeze-gtk"
-  run_loading "$add hyperhdr"                         # ambilight
-
 }
 # Установка шрифтов
 install_font()
