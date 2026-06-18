@@ -189,7 +189,7 @@ install_font()
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 copy_conf(){
 
-  git clone https://username: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@github.com/aeternuspuer/.config.git ./setup
+  quietly git clone https://username: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@github.com/aeternuspuer/.config.git 
   # sudo cp -rf ./setup/.config \
   #             ./setup/.bashrc \
   #             ./
