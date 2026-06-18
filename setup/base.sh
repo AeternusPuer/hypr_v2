@@ -129,7 +129,6 @@ install_base_packages(){
   run_loading "$install gvfs-gphoto2"
   run_loading "$install mtpfs"
   run_loading "$install ntfs-3g"
-  run_loading "$install ark"
   run_loading "$install tree"
   # Мультимедиа (звук и видео)
   run_loading "$install vlc" 
@@ -167,7 +166,7 @@ install_base_packages(){
   # Прочее
   run_loading "$install nano"
   run_loading "$install obsidian"
-  run_loading "$add onlyoffice"                       # Замена Microsoft Office
+  #run_loading "$add onlyoffice"                       # Замена Microsoft Office
   # Оформление
   run_loading "$install breeze-gtk"
 
