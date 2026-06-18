@@ -132,11 +132,9 @@ install_base_packages(){
   run_loading "$install tree"
   # Мультимедиа (звук и видео)
   run_loading "$install vlc" 
-  # run_loading "$install pulseaudio" 
-  run_loading "$install pulseaudio"
+  run_loading "$install pulseaudio" 
   run_loading "$install pipewire-alsa" 
   run_loading "$install alsa-card-profiles" 
-  run_loading "$install wireplumber" 
   run_loading "$install pipewire-pulse" 
   run_loading "$install alsa-utils" 
   run_loading "$install playerctl" 
@@ -187,6 +185,12 @@ install_font()
   run_loading "$add noto-fonts-emoji"
   run_loading "$add ttf-nerd-fonts-symbols"
 }
+install_obs()
+{
+  $install obs-studio
+  $install pipewire
+  $install wireplumber
+}
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
 
@@ -199,9 +203,10 @@ settings(){
 
 }
 main(){
-  base_settings
-  install_base_packages
-  install_font
-  run_loading settings "Настройка конфигурационных файлов"
+  # base_settings
+  # install_base_packages
+  # install_font
+  run_loading "install_obs" "Установка OBS-Studio"
+  # run_loading settings "Настройка конфигурационных файлов"
 }
 main
