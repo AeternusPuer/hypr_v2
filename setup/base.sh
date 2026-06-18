@@ -187,7 +187,7 @@ install_font()
   run_loading "$add ttf-nerd-fonts-symbols"
 }
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
-copy_conf(){
+settings(){
 
   quietly git clone https://username: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@github.com/aeternuspuer/.config.git 
   # sudo cp -rf ./setup/.config \
@@ -203,6 +203,6 @@ main(){
   # base_settings
   # install_base_packages
   # install_font
-  run_loading copy_conf "Копирование конфигурационных файлов"
+  run_loading settings "Настройка конфигурационных файлов"
 }
 main
