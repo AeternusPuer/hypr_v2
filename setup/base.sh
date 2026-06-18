@@ -4,6 +4,7 @@ if [[ $EUID -eq 0 ]]; then
     echo "Не используйте sudo и не запускайте из-под root"
     exit 1
 fi
+promt(){ TEMP="" && echo -en "\033[0;33m$@\033[0m " && read TEMP; }
 SWAP_PATH="./setup/swap.sh"                         #Путь к скрипту установки swap
 warning(){ echo -en "\033[0;31m$@\033[0m"; }
 success(){ echo -en "\033[0;32m$@\033[0m"; }
@@ -212,10 +213,11 @@ settings(){
 
 }
 main(){
-  # base_settings
-  # install_base_packages
-  # install_font
+  base_settings
+  install_base_packages
+  install_font
   run_loading "install_obs" "Установка OBS-Studio"
-  # run_loading settings "Настройка конфигурационных файлов"
+  run_loading settings "Настройка конфигурационных файлов"
+  
 }
 main
