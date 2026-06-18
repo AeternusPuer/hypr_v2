@@ -167,6 +167,7 @@ install_base_packages(){
   run_loading "$add visual-studio-code-bin" 
   run_loading "$add hyprland-per-window-layout" 
   # Прочее
+  run_loading "$install nano"
   run_loading "$install obsidian"
   run_loading "$add onlyoffice"                       # Замена Microsoft Office
   # Оформление
