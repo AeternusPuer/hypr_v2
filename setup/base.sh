@@ -190,19 +190,17 @@ install_font()
 settings(){
 
   quietly git clone https://username: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@github.com/aeternuspuer/.config.git 
-  # sudo cp -rf ./setup/.config \
-  #             ./setup/.bashrc \
-  #             ./
-
-              
+  sudo cp -rf ./setup/.config \
+              ./setup/.bashrc \
+              ./  
   sudo chown -R $USER:wheel /home/$USER
   sudo chmod +x ~/.config/wofi/wofi-toggle.sh
 
 }
 main(){
-  # base_settings
-  # install_base_packages
-  # install_font
+  base_settings
+  install_base_packages
+  install_font
   run_loading settings "Настройка конфигурационных файлов"
 }
 main
