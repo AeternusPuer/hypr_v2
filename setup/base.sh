@@ -132,7 +132,6 @@ install_base_packages(){
   run_loading "$install tree"
   # Мультимедиа (звук и видео)
   run_loading "$install vlc" 
-  run_loading "$install pulseaudio" 
   run_loading "$install pipewire-alsa" 
   run_loading "$install alsa-card-profiles" 
   run_loading "$install pipewire-pulse" 
