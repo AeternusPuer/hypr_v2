@@ -195,8 +195,7 @@ create_part(){
 }
 # Установка базовой системы
 install_base(){
-quietly pacstrap /mnt base base-devel linux linux-firmware linux-headers bash-completion grub efibootmgr 
-     #pacstrap /mnt base base-devel linux linux-firmware linux-headers bash-completion grub efibootmgr 
+  quietly pacstrap /mnt base base-devel linux linux-firmware linux-headers bash-completion grub efibootmgr 
 }
 # Установка Wayland
 install_wayland(){
@@ -279,7 +278,6 @@ main(){
   run_loading formating_part "Форматирование"
   run_loading copy_setup "Копирование папки setup"
   run_loading install_base "Установка базовой системы"
-  # install_base
   run_loading install_wayland "Установка Wayland"
   run_loading install_hyprland "Установка Hyprland"
   run_loading install_other "Установка дополнительного ПО"
