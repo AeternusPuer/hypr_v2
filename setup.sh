@@ -15,7 +15,7 @@ ROOT_PASS="1111"        # Пароль пользователя root #
 USER_NAME="user"        # Имя пользователя         #
 USER_PASS="1111"        # Пароль пользователя      #
 DISPLAY_MANAGER="sddm"  # Дисплейный менеджер      #
-#FONT="cyr-sun16"        # Шрифт в консоле          #
+FONT="cyr-sun16"        # Шрифт в консоле          #
 #--------------------------------------------------#
 # Функция с бегущим многоточием
 run_loading() {
@@ -108,7 +108,7 @@ localization(){
   sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
   sed -i 's/^#ru_RU.UTF-8 UTF-8/ru_RU.UTF-8 UTF-8/' /etc/locale.gen
   echo "LANG="ru_RU.UTF-8"" > /etc/locale.conf
-  # set $FONT
+  set $FONT
   quietly locale-gen
 }
 # Установка рефлектора
