@@ -187,9 +187,19 @@ install_font()
 }
 install_obs()
 {
+  local temp="[Unit]
+Description=Portal service
+Requires=xdg-desktop-portal-hyprland.service
+After=xdg-desktop-portal-hyprland.service
+[Service]
+ExecStart=/usr/lib/xdg-desktop-portal
+Type=dbus
+BusName=org.freedesktop.portal.Desktop"
+  echo "$temp" | sudo tee /usr/lib/systemd/user/xdg-desktop-portal.service > /dev/null
   $install obs-studio
   $install pipewire
   $install wireplumber
+
 }
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
@@ -203,10 +213,10 @@ settings(){
 
 }
 main(){
-  base_settings
-  install_base_packages
-  install_font
+  # base_settings
+  # install_base_packages
+  # install_font
   run_loading "install_obs" "Установка OBS-Studio"
-  run_loading settings "Настройка конфигурационных файлов"
+  # run_loading settings "Настройка конфигурационных файлов"
 }
 main
