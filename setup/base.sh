@@ -146,7 +146,6 @@ install_base_packages(){
   run_loading "$install hyprlock"                     # Экран блокировки
   run_loading "$install hyprpolkitagent"              # Агент аутентификации
   run_loading "$install nwg-look"                     # Утилита для настройки внешнего вида GTK
-  run_loading "$install lxappearance" 
   run_loading "$install nwg-displays" 
   run_loading "$install slurp"                        # Утилита для выбора областей экрана
   run_loading "$install grim"                         # Cоздания скриншотов
@@ -169,6 +168,7 @@ install_base_packages(){
   #run_loading "$add onlyoffice"                       # Замена Microsoft Office
   # Оформление
   run_loading "$install breeze-gtk"
+  run_loading "$add hyperhdr"                         # ambilight
 
 }
 # Установка шрифтов
@@ -198,6 +198,7 @@ BusName=org.freedesktop.portal.Desktop"
   $install obs-studio
   $install pipewire
   $install wireplumber
+  $install luajit
 
 }
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
