@@ -203,10 +203,10 @@ settings(){
 
 }
 main(){
-  # base_settings
-  # install_base_packages
-  # install_font
+  base_settings
+  install_base_packages
+  install_font
   run_loading "install_obs" "Установка OBS-Studio"
-  # run_loading settings "Настройка конфигурационных файлов"
+  run_loading settings "Настройка конфигурационных файлов"
 }
 main
