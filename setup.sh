@@ -145,7 +145,7 @@ initialisation(){
   sed -i 's/^#NTP=/NTP=0.arch.pool.ntp.org 1.arch.pool.ntp.org 2.arch.pool.ntp.org 3.arch.pool.ntp.org/' /etc/systemd/timesyncd.conf
   systemctl start systemd-timesyncd
   setup_reflector
-  reflector --country RU --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist
+  reflector --country Russia --protocol https --latest 20 --sort rate --save /etc/pacman.d/mirrorlist
   quietly pacman -Syy
   clear
   return 0
