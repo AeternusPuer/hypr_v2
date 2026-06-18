@@ -202,14 +202,13 @@ BusName=org.freedesktop.portal.Desktop"
 }
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
-    SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-  quietly git clone https://github.com/aeternuspuer/.config.git $SCRIPT_DIR
+  SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+  quietly git clone https://github.com/aeternuspuer/.config.git "$SCRIPT_DIR/.config"
   sudo cp -rf ./setup/.config \
               ./setup/.bashrc \
               ./  
   sudo chown -R $USER:wheel /home/$USER
   sudo chmod +x ~/.config/wofi/wofi-toggle.sh
-
 }
 main(){
   base_settings
@@ -217,6 +216,5 @@ main(){
   install_font
   run_loading "install_obs" "Установка OBS-Studio"
   run_loading settings "Настройка конфигурационных файлов"
-  
 }
 main
