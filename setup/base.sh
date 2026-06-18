@@ -203,7 +203,7 @@ BusName=org.freedesktop.portal.Desktop"
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
     SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-  quietly git clone https://username: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@github.com/aeternuspuer/.config.git $SCRIPT_DIR
+  quietly git clone https://github.com/aeternuspuer/.config.git $SCRIPT_DIR
   sudo cp -rf ./setup/.config \
               ./setup/.bashrc \
               ./  
