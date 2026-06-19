@@ -214,6 +214,10 @@ settings(){
               ./  
   sudo chown -R $USER:wheel /home/$USER
   sudo chmod +x ~/.config/wofi/wofi-toggle.sh
+  local temp='SUBSYSTEM=="block", ENV{ID_FS_UUID}=="38E207E8E207A968", ENV{UDISKS_IGNORE}="1"'
+  echo "$temp" | sudo tee /etc/udev/rules.d/61-hide-partitions.rules > /dev/null
+  quietly sudo udevadm control --reload
+  quietly sudo udevadm trigger
 }
 install_custom(){
    run_loading "$add onlyoffice-bin"                       # Замена Microsoft Office
@@ -225,6 +229,6 @@ main(){
   run_loading "install_obs" "Установка OBS-Studio"
   install_razer
   install_custom
-  run_loading settings "Настройка конфигурационных файлов"
+  run_loading "settings" "Настройка конфигурационных файлов"
 }
 main
