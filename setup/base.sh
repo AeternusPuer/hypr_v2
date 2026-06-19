@@ -165,7 +165,6 @@ install_base_packages(){
   # Прочее
   run_loading "$install nano"
   run_loading "$install obsidian"
-  #run_loading "$add onlyoffice"                       # Замена Microsoft Office
   # Оформление
   run_loading "$install breeze-gtk"
 }
@@ -199,6 +198,13 @@ BusName=org.freedesktop.portal.Desktop"
   $install luajit
 
 }
+install_razer(){
+  run_loading "$install openrazer-daemon"
+  run_loading "$install openrazer-driver-dkms"
+  run_loading "$install python-openrazer"
+  sudo usermod -aG openrazer $USER
+  run_loading "$add razergenie"
+}
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
   SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
@@ -209,11 +215,16 @@ settings(){
   sudo chown -R $USER:wheel /home/$USER
   sudo chmod +x ~/.config/wofi/wofi-toggle.sh
 }
+install_custom(){
+   #run_loading "$add onlyoffice"                       # Замена Microsoft Office
+}
 main(){
-  base_settings
-  install_base_packages
-  install_font
-  run_loading "install_obs" "Установка OBS-Studio"
-  run_loading settings "Настройка конфигурационных файлов"
+  # base_settings
+  # install_base_packages
+  # install_font
+  # run_loading "install_obs" "Установка OBS-Studio"
+  # install_razer
+  install_custom
+  # run_loading settings "Настройка конфигурационных файлов"
 }
 main
