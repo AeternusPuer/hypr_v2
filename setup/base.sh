@@ -216,7 +216,7 @@ settings(){
   sudo chmod +x ~/.config/wofi/wofi-toggle.sh
 }
 install_custom(){
-   #run_loading "$add onlyoffice"                       # Замена Microsoft Office
+   run_loading "$add onlyoffice-bin"                       # Замена Microsoft Office
 }
 main(){
   base_settings
