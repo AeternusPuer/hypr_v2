@@ -219,12 +219,12 @@ install_custom(){
    #run_loading "$add onlyoffice"                       # Замена Microsoft Office
 }
 main(){
-  # base_settings
-  # install_base_packages
-  # install_font
-  # run_loading "install_obs" "Установка OBS-Studio"
-  # install_razer
+  base_settings
+  install_base_packages
+  install_font
+  run_loading "install_obs" "Установка OBS-Studio"
+  install_razer
   install_custom
-  # run_loading settings "Настройка конфигурационных файлов"
+  run_loading settings "Настройка конфигурационных файлов"
 }
 main
