@@ -4,8 +4,9 @@ if [[ $EUID -eq 0 ]]; then
     echo "Не используйте sudo и не запускайте из-под root"
     exit 1
 fi
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 promt(){ TEMP="" && echo -en "\033[0;33m$@\033[0m " && read TEMP; }
-SWAP_PATH="./setup/swap.sh"                         #Путь к скрипту установки swap
+SWAP_PATH="$SCRIPT_DIR/swap.sh"                         #Путь к скрипту установки swap
 warning(){ echo -en "\033[0;31m$@\033[0m"; }
 success(){ echo -en "\033[0;32m$@\033[0m"; }
 install="quietly sudo pacman -S --noconfirm"
@@ -207,16 +208,17 @@ install_razer(){
 }
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
-  SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-  TEMP_DIR=$(mktemp -d)
-  # Копирование конфигурационных файлов
+  
+  local TEMP_DIR=$(mktemp -d)
+  Копирование конфигурационных файлов
   if [[ -d "$SCRIPT_DIR/.config" ]]; then
     rm -rf "$SCRIPT_DIR/.config" 
   fi
   quietly git clone https://github.com/aeternuspuer/.config.git "$SCRIPT_DIR/.config"
-  sudo cp -rf ./setup/.config \
-              ./setup/.bashrc \
-              ./  
+  echo "$SCRIPT_DIR"
+  sudo cp -r $SCRIPT_DIR/.config \
+              $SCRIPT_DIR/.bashrc \
+              /home/$USER/
   sudo chown -R $USER:wheel /home/$USER
   sudo chmod +x ~/.config/wofi/wofi-toggle.sh
   # Скрываем диск  с windows
@@ -234,21 +236,23 @@ settings(){
   mv "$TEMP_DIR"/* "$SCRIPT_DIR"/
   rm -rf "$TEMP_DIR"
   quietly sudo "$SCRIPT_DIR/grub.sh" 
-  # Удаляем временные файлы
+  Удаляем временные файлы
   rm -rf "$SCRIPT_DIR/Hypr" 
   rm "$SCRIPT_DIR/grub.sh"
   rm -rf "$SCRIPT_DIR/.config" 
+
+  
 }
 install_custom(){
    run_loading "$add onlyoffice-bin"                       # Замена Microsoft Office
 }
 main(){
-  # base_settings
-  # install_base_packages
-  # install_font
-  # run_loading "install_obs" "Установка OBS-Studio"
-  # install_razer
-  # install_custom
+  base_settings
+  install_base_packages
+  install_font
+  run_loading "install_obs" "Установка OBS-Studio"
+  install_razer
+  install_custom
   run_loading "settings" "Настройка конфигурационных файлов"
 }
 main
