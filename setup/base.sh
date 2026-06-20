@@ -210,12 +210,11 @@ install_razer(){
 settings(){
   
   local TEMP_DIR=$(mktemp -d)
-  Копирование конфигурационных файлов
+  #Копирование конфигурационных файлов
   if [[ -d "$SCRIPT_DIR/.config" ]]; then
     rm -rf "$SCRIPT_DIR/.config" 
   fi
   quietly git clone https://github.com/aeternuspuer/.config.git "$SCRIPT_DIR/.config"
-  echo "$SCRIPT_DIR"
   sudo cp -r $SCRIPT_DIR/.config \
               $SCRIPT_DIR/.bashrc \
               /home/$USER/
@@ -236,7 +235,7 @@ settings(){
   mv "$TEMP_DIR"/* "$SCRIPT_DIR"/
   rm -rf "$TEMP_DIR"
   quietly sudo "$SCRIPT_DIR/grub.sh" 
-  Удаляем временные файлы
+  # Удаляем временные файлы
   rm -rf "$SCRIPT_DIR/Hypr" 
   rm "$SCRIPT_DIR/grub.sh"
   rm -rf "$SCRIPT_DIR/.config" 
