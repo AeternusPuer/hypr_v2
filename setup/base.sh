@@ -208,27 +208,47 @@ install_razer(){
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
   SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+  TEMP_DIR=$(mktemp -d)
+  # Копирование конфигурационных файлов
+  if [[ -d "$SCRIPT_DIR/.config" ]]; then
+    rm -rf "$SCRIPT_DIR/.config" 
+  fi
   quietly git clone https://github.com/aeternuspuer/.config.git "$SCRIPT_DIR/.config"
   sudo cp -rf ./setup/.config \
               ./setup/.bashrc \
               ./  
   sudo chown -R $USER:wheel /home/$USER
   sudo chmod +x ~/.config/wofi/wofi-toggle.sh
+  # Скрываем диск  с windows
   local temp='SUBSYSTEM=="block", ENV{ID_FS_UUID}=="38E207E8E207A968", ENV{UDISKS_IGNORE}="1"'
   echo "$temp" | sudo tee /etc/udev/rules.d/61-hide-partitions.rules > /dev/null
   quietly sudo udevadm control --reload
   quietly sudo udevadm trigger
+  # Установка темы груб
+  if [[ -d "$SCRIPT_DIR/Hypr" && -f "$SCRIPT_DIR/grub.sh" ]]; then
+    rm -rf "$SCRIPT_DIR/Hypr" 
+    rm "$SCRIPT_DIR/grub.sh"
+  fi
+  quietly git clone https://github.com/aeternuspuer/Grub-Themes.git "$TEMP_DIR"
+  shopt -s nullglob
+  mv "$TEMP_DIR"/* "$SCRIPT_DIR"/
+  rm -rf "$TEMP_DIR"
+  quietly sudo "$SCRIPT_DIR/grub.sh" 
+  # Удаляем временные файлы
+  rm -rf "$SCRIPT_DIR/Hypr" 
+  rm "$SCRIPT_DIR/grub.sh"
+  rm -rf "$SCRIPT_DIR/.config" 
 }
 install_custom(){
    run_loading "$add onlyoffice-bin"                       # Замена Microsoft Office
 }
 main(){
-  base_settings
-  install_base_packages
-  install_font
-  run_loading "install_obs" "Установка OBS-Studio"
-  install_razer
-  install_custom
+  # base_settings
+  # install_base_packages
+  # install_font
+  # run_loading "install_obs" "Установка OBS-Studio"
+  # install_razer
+  # install_custom
   run_loading "settings" "Настройка конфигурационных файлов"
 }
 main
