@@ -237,7 +237,7 @@ settings(){
   quietly sudo "$SCRIPT_DIR/grub.sh" 
   # Удаляем временные файлы
   rm -rf "$SCRIPT_DIR/Hypr" 
-  rm "$SCRIPT_DIR/grub.sh"
+  rm -rf "$SCRIPT_DIR/grub.sh"
   rm -rf "$SCRIPT_DIR/.config" 
 
   
