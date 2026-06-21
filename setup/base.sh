@@ -208,7 +208,6 @@ install_razer(){
 }
 # Нужно изменить принцип работы, с локального копирования, на копирование с GitHub
 settings(){
-  
   local TEMP_DIR=$(mktemp -d)
   #Копирование конфигурационных файлов
   if [[ -d "$SCRIPT_DIR/.config" ]]; then
@@ -239,8 +238,6 @@ settings(){
   rm -rf "$SCRIPT_DIR/Hypr" 
   rm -rf "$SCRIPT_DIR/grub.sh"
   rm -rf "$SCRIPT_DIR/.config" 
-
-  
 }
 install_custom(){
    run_loading "$add onlyoffice-bin"                       # Замена Microsoft Office
