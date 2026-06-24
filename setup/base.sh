@@ -242,6 +242,15 @@ settings(){
 install_custom(){
    run_loading "$add onlyoffice-bin"                       # Замена Microsoft Office
 }
+install_printer()
+{
+  run_loading "$install cups"
+  run_loading "$install cups-pdf"
+  quietly sudo systemctl enable --now cups.service
+  run_loading "$install system-config-printer"
+  run_loading "$add epson-inkjet-printer-202101w"
+  run_loading "$install shotwell"
+}
 main(){
   base_settings
   install_base_packages
@@ -249,6 +258,7 @@ main(){
   run_loading "install_obs" "Установка OBS-Studio"
   install_razer
   install_custom
+  install_printer
   run_loading "settings" "Настройка конфигурационных файлов"
 }
 main
